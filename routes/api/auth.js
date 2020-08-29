@@ -8,6 +8,7 @@ const { check, validationResult } = require('express-validator');
 
 const User = require('../../models/User');
 
+// auth route
 router.get('/', auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
@@ -51,21 +52,24 @@ router.post(
           .json({ errors: [{ msg: 'Invalid credentials' }] });
       }
 
-      const payload = {
-        user: {
-          id: user.id,
-        },
-      };
+      const token = await user.generateAuthToken();
 
-      jwt.sign(
-        payload,
-        config.get('jwtSecret'),
-        { expiresIn: 360000 },
-        (err, token) => {
-          if (err) throw err;
-          res.status(201).json({ token });
-        }
-      );
+      res.status(200).json({ token });
+      // const payload = {
+      //   user: {
+      //     id: user.id,
+      //   },
+      // };
+
+      // jwt.sign(
+      //   payload,
+      //   config.get('jwtSecret'),
+      //   { expiresIn: 360000 },
+      //   (err, token) => {
+      //     if (err) throw err;
+      //     res.status(201).json({ token });
+      //   }
+      // );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
