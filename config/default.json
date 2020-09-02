@@ -1,4 +1,6 @@
 {
   "mongoURI": "mongodb+srv://Asmodeus:asmodeus159753@devconnector.c3utp.mongodb.net/DevConnector?retryWrites=true&w=majority",
-  "jwtSecret": "jibrish"
+  "jwtSecret": "jibrish",
+  "githubId": "c93470143306d3859db0",
+  "githubSecret": "ce207da967f6db6e4c8a4bafea9944110a4dc3ca"
 }

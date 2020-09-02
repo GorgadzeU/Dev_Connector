@@ -26,6 +26,16 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
+//delete password before sending
+UserSchema.methods.toJSON = function () {
+  const user = this;
+  const userObject = user.toObject();
+
+  delete userObject.password;
+
+  return userObject;
+};
+
 // generate auth token
 UserSchema.methods.generateAuthToken = async function () {
   const user = this;
