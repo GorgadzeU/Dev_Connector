@@ -3,10 +3,11 @@ const router = express.Router();
 const request = require('request');
 const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
+const { compare } = require('bcryptjs');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-const { compare } = require('bcryptjs');
+const Post = require('../../models/Post');
 
 // Get profile
 router.get('/me', auth, async (req, res) => {
@@ -141,6 +142,8 @@ router.get('/user/:user_id', async (req, res) => {
 // delete profile, user posts
 router.delete('/', auth, async (req, res) => {
   try {
+    await Post.deleteMany({ user: req.user.id });
+
     await Profile.findOneAndRemove({ user: req.user.id });
 
     await User.findOneAndRemove({ _id: req.user.id });
@@ -204,7 +207,7 @@ router.put(
       res.json(profile);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Server Error');
+      res.status(500).send('Server Error', err);
     }
   }
 );
