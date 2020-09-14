@@ -14,6 +14,9 @@ import EditProfile from './pages/profile-forms/edit-profile';
 import AddExperience from './pages/profile-forms/add-experience';
 import AddEducation from './pages/profile-forms/add-education';
 import Profiles from './pages/profiles.page';
+import Profile from './pages/profile.page';
+import Posts from './pages/posts.page';
+import Post from './pages/post.page';
 import Alert from './components/alert/alert.component';
 
 import { loadUser } from './redux/auth/auth.actions';
@@ -31,12 +34,13 @@ function App({ loadUser }) {
     <Fragment>
       <Navbar />
       <Route path='/' exact component={Landing} />
-      <section className='container'>
+      <section>
         <Alert />
         <Switch>
           <Route path='/register' exact component={Register} />
           <Route path='/login' exact component={Login} />
           <Route path='/profiles' exact component={Profiles} />
+          <Route path='/profile/:id' component={Profile} />
           <PrivateRoute path='/dashboard' exact component={Dashboard} />
           <PrivateRoute
             path='/create-profile'
@@ -50,6 +54,8 @@ function App({ loadUser }) {
             component={AddExperience}
           />
           <PrivateRoute path='/add-education' exact component={AddEducation} />
+          <PrivateRoute path='/posts' exact component={Posts} />
+          <PrivateRoute path='/posts/:id' exact component={Post} />
         </Switch>
       </section>
     </Fragment>

@@ -88,7 +88,6 @@ const AddEducation = ({ addEducation, history }) => {
             <input
               type='checkbox'
               name='current'
-              value=''
               value={current}
               checked={current}
               onChange={(e) => {
@@ -128,6 +127,9 @@ const AddEducation = ({ addEducation, history }) => {
   );
 };
 
-AddEducation.propTypes = {};
+AddEducation.propTypes = {
+  addEducation: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+};
 
 export default connect(null, { addEducation })(AddEducation);

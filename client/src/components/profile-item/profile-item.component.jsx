@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { profile_url } from 'gravatar';
 
 const ProfileItem = ({ profile }) => {
   const {
@@ -37,7 +36,7 @@ const ProfileItem = ({ profile }) => {
 };
 
 ProfileItem.propTypes = {
-  //   profile: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
 export default ProfileItem;

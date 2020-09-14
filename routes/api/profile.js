@@ -90,7 +90,7 @@ router.post(
           { new: true }
         );
 
-        res.json(profile);
+        return res.json(profile);
       }
 
       //Create
@@ -121,7 +121,7 @@ router.get('/', async (req, res) => {
 //get profile by user id
 router.get('/user/:user_id', async (req, res) => {
   try {
-    const profile = await Profile.find({
+    const profile = await Profile.findOne({
       user: req.params.user_id,
     }).populate('user', ['name', 'avatar']);
 

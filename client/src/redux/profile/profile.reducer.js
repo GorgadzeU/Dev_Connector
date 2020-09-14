@@ -6,7 +6,6 @@ import {
   GET_PROFILES,
   GET_REPOS,
 } from './profile.types';
-import { patch } from 'request';
 
 const INIT_STATE = {
   profile: null,
